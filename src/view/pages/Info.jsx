@@ -12,7 +12,7 @@ export const Info = () => {
     </div>
   </div> 
   <div>
-    <p>Copyright © 2022 - Developed by Java(Javokhir)</p>
+    <p>Copyright © 2022 - Developed by SaburDev </p>
   </div>
 </footer>
     </div>
