@@ -1,19 +1,27 @@
 import React, { useState } from 'react'
 import { BiTrash } from 'react-icons/bi'
+import { useSelector } from '../../../logic/store'
 
-export const Todo = ({todo}) => {
-    const[check,setCheck] = useState(false)
-  return (
-      <li className='flex justify-between items-center'>
-          <div className="flex items-center gap-3">
+export const Todo = ({ todo }) => {
+    const [check, setCheck] = useState(false)
+    const { toggleTodo, removeTodo } = useSelector()
+
+    const toggleTodos = (id) => {
+        toggleTodo(id)
+        setCheck(todo.completed)
+    }
+
+    return (
+        <li className='flex justify-between items-center'>
+            <div className="flex items-center gap-3">
                 <div className="form control">
                     <label className='cursor-pointer label'>
-                        <input type="checkbox" checked={check} onChange={event => setCheck(event.target.checked)} class="checkbox"/>
+                        <input type="checkbox" checked={check} onChange={event => setCheck(event => toggleTodos(todo.id))} class="checkbox" />
                     </label>
                 </div>
                 <span className='text-lg'>{todo.title}</span>
-          </div>
-          <button className='btn btn-ghost text-error btn-square btn-sm text-lg'><BiTrash/></button>
-      </li>
-  )
+            </div>
+            <button onClick={() => removeTodo(todo.id)} className='btn btn-ghost text-error btn-square btn-sm text-lg'><BiTrash /></button>
+        </li>
+    )
 }
